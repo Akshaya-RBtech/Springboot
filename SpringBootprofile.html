@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result</title>
+    <style>
+        body {
+            background-color: rgb(5, 201, 250);
+            color: white;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 5px;
+        }
+        #results {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>SpringBoot</h1>
+    <form id="studentForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br>
+        <label for="phone number">ID:</label>
+        <input type="text" id="phone number" required><br>
+        <label for="Address">Address updation:</label>
+        <input type="number" id="math" min="0" max="100" required><br>
+        <label for="Phone Number">number:</label>
+        <input type="number" id="Phone Number" min="0" max="100" required><br>
+        <button type="submit">Updation</button>
+    </form>
+
+    <div id="results">
+        <h2>Student Details</h2>
+        <p><strong>Name:</strong> <span id="resultName"></span></p>
+        <p><strong>ID:</strong> <span id="resultId"></span></p>
+
+        <h2>Marks</h2>
+        <table border="1">
+            <tr>
+                <th>Subject</th>
+                <th>Mark</th>
+            </tr>
+            <tr>
+                <td>Math</td>
+                <td id="resultMath"></td>
+            </tr>
+            <tr>
+                <td>Science</td>
+                <td id="resultScience"></td>
+            </tr>
+            <tr>
+                <td>English</td>
+                <td id="resultEnglish"></td>
+            </tr>
+        </table>
+
+        <h2>Results</h2>
+        <p><strong>Total Marks:</strong> <span id="totalMarks"></span></p>
+        <p><strong>Average Marks:</strong> <span id="averageMarks"></span></p>
+        <p><strong>Grade:</strong> <span id="grade"></span></p>
+    </div>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const id = document.getElementById('id').value;
+            const math = parseInt(document.getElementById('math').value);
+            const science = parseInt(document.getElementById('science').value);
+            const english = parseInt(document.getElementById('english').value);
+
+            const total = math + science + english;
+            const average = (total / 3).toFixed(2);
+            let grade;
+            if (average >= 90) {
+                grade = 'A';
+            } else if (average >= 80) {
+                grade = 'B';
+            } else if (average >= 70) {
+                grade = 'C';
+            } else if (average >= 60) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+
+            document.getElementById('resultName').textContent = name;
+            document.getElementById('resultId').textContent = id;
+            document.getElementById('resultMath').textContent = math;
+            document.getElementById('resultScience').textContent = science;
+            document.getElementById('resultEnglish').textContent = english;
+            document.getElementById('totalMarks').textContent = total;
+            document.getElementById('averageMarks').textContent = average;
+            document.getElementById('grade').textContent = grade;
+
+            document.getElementById('results').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+
